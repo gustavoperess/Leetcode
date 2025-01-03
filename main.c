@@ -7,7 +7,6 @@
 int main() {
     __uint128_t number = 112312123112313ULL;
     float fnumber = 1.35;
-    bool isGustavoHandsome = false;
     // printf("Number: %llu%llu\n",
     //     (unsigned long long)(number >> 64), // High 64 bits
     //     (unsigned long long)(number & 0xFFFFFFFFFFFFFFFFULL)); // Low 64 bits

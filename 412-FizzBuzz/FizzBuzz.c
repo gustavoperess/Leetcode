@@ -23,35 +23,30 @@ char **fizzBuzz(int n, int *returnSize)
         if (i % 3 == 0 && i % 5 == 0)
         {
             arr[i] = strdup("FizzBuzz");
-            // printf("FizzBuzz\n");
         }
         else if (i % 5 == 0)
         {
             arr[i] = strdup("Buzz");
-            // printf("Buzz\n");
         }
         else if (i % 3 == 0)
         {
             arr[i] = strdup("Fizz");
-            // printf("Fizz\n");
         }
         else
         {
             arr[i] = (char *)malloc(12 * sizeof(char));
             sprintf(arr[i], "%d", i); 
-            // printf("%d\n", i);
         }
     }
-    for (int i = 1; i <= n; i++)
-    {
-        printf("result[%d] = %s\n", i, arr[i]);
-    }
-
-    return 0;
+    *returnSize  = n;
+    return arr;
 }
 
 int main()
 {
-    fizzBuzz(15, (int *)15);
+    int n = 15;
+    int returnSize;
+    char **result = fizzBuzz(n, &returnSize);
+    free(result);
     return 0;
 }

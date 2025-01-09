@@ -40,7 +40,6 @@ void myStackPush(MyStack *obj, int x)
         return;
     }
     obj->arr[++obj->head] = x;
-   
     // printf("item pushed to the stack\n");
 }
 

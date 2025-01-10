@@ -11,7 +11,7 @@
 #include <sys/uio.h>
 
 
-// a simple server with a get request, with the single goal to learn how server/get requests work.
+// a simple server, with the goal to learn how server/get requests work.
 int main() {
     int s = socket(PF_INET, SOCK_STREAM, 0);
     if (s < 0) {

@@ -23,7 +23,7 @@ int *getSneakyNumbers(int *nums, int numsSize, int *returnSize)
     return items;
 }
 
-int main()
+int main()  
 {
     int input[] = {0, 3, 2, 1, 3, 2};
     int len = sizeof(input) / sizeof(int);

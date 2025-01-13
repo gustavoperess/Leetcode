@@ -22,15 +22,10 @@ int main()
     int len = sizeof(nums) / sizeof(int);
     int returnSize;
 
-    // int *result = buildArray(nums, len, &returnSize);
-    // free(result);
-     while (1) {
-        int *result = buildArray(nums, len, &returnSize);
-        if (!result) {
-            printf("Memory allocation failed\n");
-            break;
-        }
+    int *result = buildArray(nums, len, &returnSize);
+    free(result);
+  
         // Do not free the result to simulate memory fill-up
-    }
+    
     return 0;
 }

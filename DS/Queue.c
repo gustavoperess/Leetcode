@@ -6,7 +6,6 @@
 
 typedef struct
 {
-
     int arr[MAX_SIZE];
     int head;
     int tail;

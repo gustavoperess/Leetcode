@@ -8,18 +8,16 @@ class TreeNode:
         self.right = right
         
 class Solution:
-    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
-        if not root:
-            return None
-        temp = root.left
-        root.left = root.right
-        root.right = temp
-        self.invertTree(root.left)
-        self.invertTree(root.right)
-    
-        return root
-    
-    
+    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+        if not p and not q:
+            return True
+        if not p or not q:
+            return False
+        if p.val != q.val:
+            return False
+        return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
+
+      
 def insert_level_order(arr: List[Optional[int]], root: Optional[TreeNode], i: int, n: int) -> Optional[TreeNode]:
     if i < n and arr[i] is not None:
         node = TreeNode(arr[i])
@@ -28,7 +26,10 @@ def insert_level_order(arr: List[Optional[int]], root: Optional[TreeNode], i: in
         root.right = insert_level_order(arr, root.right, 2 * i + 2, n)
     return root
 
-arr = [4,2,7,1,3,6,9]
-root = insert_level_order(arr, None, 0, len(arr))
+p1 = [1,2,3,5]
+p2 = [1,2,3,5]
+root = insert_level_order(p1, None, 0, len(p1))
+roottwo = insert_level_order(p2, None, 0, len(p2))
 result = Solution()
-result.invertTree(root)
+t = result.isSameTree(root, roottwo)
+print(t)

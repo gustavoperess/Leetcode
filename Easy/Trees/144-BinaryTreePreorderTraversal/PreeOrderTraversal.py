@@ -8,16 +8,16 @@ class TreeNode:
         self.right = right
         
 class Solution:
-    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]: 
+    def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]: 
         result = []
         
         def inorder(node: Optional[TreeNode]):
             if not node:
                 return
-            inorder(node.right)
             result.append(node.val)
             inorder(node.left)
-        
+            inorder(node.right)
+      
         inorder(root)
         return result
       
@@ -37,7 +37,7 @@ root = insert_level_order(arr, None, 0, len(arr))
 
 # Create the Solution object and perform in-order traversal
 solution = Solution()
-t = solution.inorderTraversal(root)
+t = solution.preorderTraversal(root)
 
 # Print the in-order traversal result
 print("In-order Traversal Result:", t)

@@ -1,6 +1,3 @@
-from collections import Counter
-
-
 def rotationalCipher(input_str, rotation_factor):
     result = ""
     for i, v in enumerate(input_str):
@@ -110,5 +107,54 @@ def min_length_substring(s, t):
 
 
 
-t = min_length_substring(s = "adobecodebanc", t="abc")
+t = min_length_substring(s = "dcbefebce", t="fd")
 # t = min_length_substring(s = "ab", t="a")
+
+
+
+class Solution:
+    def minRemoveToMakeValid(self, s: str) -> str:
+        stack = []
+        count = 0
+        for i in s:
+            if i == "(":
+                stack.append(i)
+                count += 1
+            elif i == ")" and count > 0:
+                stack.append(i)
+                count -= 1
+            elif i != ")":
+                stack.append(i)
+        filtered = []
+        for i in reversed(stack):
+            if i == "(" and count > 0:
+                count -= 1
+            else:
+                filtered.append(i)
+            
+        return "".join(filtered[::-1])
+                
+                
+        
+                
+    def isValid(self, s: str) -> bool:
+        stack = []
+        closeToOpen = {")" : "(", "}" : "{","]" : "[", }
+        for i in s:
+            if i in closeToOpen:
+                if stack and stack[-1] == closeToOpen[i]:
+                    stack.pop()
+                else:
+                    return False
+            else:
+                stack.append(i)
+        return True if not stack else True
+        
+        
+        
+
+result = Solution()
+result.minRemoveToMakeValid(s = "(lee(t(c)o)de")
+result.minRemoveToMakeValid(s = "a)b(c)d")
+result.minRemoveToMakeValid(s="))((")
+t = result.isValid(s = "()()}}())")

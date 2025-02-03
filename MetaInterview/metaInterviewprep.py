@@ -52,10 +52,6 @@ class Solution:
                 l += 1
 
         return s[res[0]:res[1] + 1] if reslen != float("infinity") else ""
-
-    
-    
-    
     
     def minRemoveToMakeValid(self, s: str) -> str:
         stack = []
@@ -151,5 +147,54 @@ class Solution:
             temp //= 10
         return reversed_num == x
 
+    def countPalindromicSubsequence(self, s: str) -> int:
+        rightS = {}
+        leftS = set()
+        result = set()
+        for i in s:
+            if i in rightS:
+                rightS[i] += 1
+            else:
+                rightS[i] = 1
+        print(rightS)
+        for i,m in enumerate(s):
+            rightS[m] -= 1
+            for c in leftS:
+                if rightS[c] > 0:
+                    result.add((c,m))
+            leftS.add(m)
+
+        return result
+    def validPalindrome(self, s: str) -> bool:
+        left, right = 0, len(s) - 1
+        while left <= right:
+            string1 = s[:left] + s[left+1:]
+            if s[left] != s[right]:
+                string1 = s[:left] + s[left+1:]
+                string2 = s[:right] + s[right+1:]
+                return string1==string1[::-1] or string2==string2[::-1]
+            left += 1
+            right -= 1
+        return True
+    
+    def validWordAbbreviation(self, word: str, abbr: str) -> bool:
+        word_ptr = abbr_ptr = 0
+        while word_ptr < len(word) and abbr_ptr < len(abbr):
+            if abbr[abbr_ptr].isdigit():
+                if abbr[abbr_ptr] == '0':
+                    return False
+                steps = 0
+                while abbr_ptr < len(abbr) and abbr[abbr_ptr].isdigit():
+                    steps = steps * 10 + int(abbr[abbr_ptr]) # converting to int
+                    abbr_ptr += 1
+                word_ptr += steps
+            else:    
+                if word[word_ptr] != abbr[abbr_ptr]:
+                    return False
+                word_ptr += 1
+                abbr_ptr += 1
+        return word_ptr == len(word) and abbr_ptr == len(abbr)
+          
+        
 result = Solution()
-result.isPalindrome(x = 543)
+result.validWordAbbreviation(word = "internationalization", abbr = "i12iz4n")

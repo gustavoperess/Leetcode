@@ -1,3 +1,4 @@
+from typing import List
 class Solution:
     def count_subarrays(self, arr):
         n = len(arr)
@@ -194,7 +195,81 @@ class Solution:
                 word_ptr += 1
                 abbr_ptr += 1
         return word_ptr == len(word) and abbr_ptr == len(abbr)
-          
-        
+    
+    def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
+        last = m + n - 1
+        while m > 0 and n > 0:
+            if nums1[m - 1] > nums2[n - 1]:
+                nums1[last] = nums1[m - 1]
+                m -= 1
+            else:
+                nums1[last] = nums2[n - 1] 
+                n -= 1
+            last -= 1
+        while n > 0:
+            nums1[last] = nums2[n - 1]
+            n -= 1
+            last -= 1
+
+    def longestMonotonicSubarray(self, nums: List[int]) -> int:
+        inc = 1
+        dec = 1
+        ans = 1
+        for i in range(len(nums)):
+            if nums[i] > nums[i - 1]:
+                inc += 1
+                dec = 1
+            elif nums[i] < nums[i - 1]:
+                dec += 1
+                inc = 1
+            else:
+                inc = 1
+                dec = 1
+            print(ans)
+            ans = max(inc, dec)
+        return ans
+
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        seen = {}
+        for i in range(len(nums)):
+            diff = target - nums[i]
+            if diff in seen:
+                return [seen[diff], i]
+            else:
+                seen[nums[i]] = i
+        return [0,0]
+    
+    def toGoatLatin(self, sentence: str) -> str:
+        ans = []
+        vowels = ['a','e','i','o','u',]
+        s = sentence.split(" ")
+        for i in range(len(s)):
+            if s[i][0].lower() in vowels:
+                ans.append(s[i] + "ma" + ((i + 1) * 'a'))
+            else:
+                ans.append(s[i][1:] + s[i][0] + "ma" + ((i + 1) * 'a'))
+            
+        return " ".join(ans)
+    
+    def addStrings(self, num1: str, num2: str) -> str:
+        def convertToInd(number):
+            hashMap = { '0':0,
+                        '1':1,
+                        '2':2,
+                        '3':3,
+                        '4':4,
+                        '5':5,
+                        '6':6,
+                        '7':7,
+                        '8':8,
+                        '9':9
+                    }
+            ans = 0
+            for i in number:
+                ans = ans * 10 + hashMap[i]
+            return ans
+        return str(convertToInd(num1) + convertToInd(num2))
+            
+    
 result = Solution()
-result.validWordAbbreviation(word = "internationalization", abbr = "i12iz4n")
+t = result.addStrings(num1 = "11", num2 = "123")

@@ -157,7 +157,6 @@ class Solution:
                 rightS[i] += 1
             else:
                 rightS[i] = 1
-        print(rightS)
         for i,m in enumerate(s):
             rightS[m] -= 1
             for c in leftS:
@@ -225,7 +224,6 @@ class Solution:
             else:
                 inc = 1
                 dec = 1
-            print(ans)
             ans = max(inc, dec)
         return ans
 
@@ -269,7 +267,89 @@ class Solution:
                 ans = ans * 10 + hashMap[i]
             return ans
         return str(convertToInd(num1) + convertToInd(num2))
-            
     
+    def generate(self, numRows: int) -> List[List[int]]:
+        if numRows == 0:
+            return []
+        if numRows == 1:
+            return [[1]]
+        
+        prevRows = self.generate(numRows - 1)
+        newRow = [1] * numRows
+        
+        for i in range(1, numRows- 1):
+            newRow[i] = prevRows[-1][i - 1] + prevRows[-1][i]
+     
+        prevRows.append(newRow)
+        return prevRows
+    
+    def isToeplitzMatrix(self, matrix: List[List[int]]) -> bool:
+        def isDiagonal(row, col):
+            val = matrix[row][col]
+            
+            while row < len(matrix) and col < len(matrix[0]):
+                if matrix[row][col] != val:
+                    return False
+                row += 1
+                col += 1
+            return True
+        
+        for col in range(len(matrix[0])):
+            if not isDiagonal(0, col):
+                return False
+            
+        for row in range(1, len(matrix)):
+            if not isDiagonal(row, 0):
+                return False
+        return True
+    
+    def findMissingRanges(self, nums: List[int], lower: int, upper: int) -> List[List[int]]:
+        ans = []
+        # for i in range(len(nums) - 1):
+        #     if nums[i] +1 != nums[i + 1]:
+        #         ans.append([nums[i] + 1, nums[i + 1] - 1])
+        # ans.append([nums[-1] + 1, upper]) 
+        # return ans
+        for num in nums:
+            if num > lower:
+                ans.append([lower, num - 1])
+            lower = num + 1
+        if lower <= upper:
+            ans.append([lower, upper])
+        
+        return ans
+  
+    def intToRoman(self, num: int) -> str:
+        hashMap = {
+            1000: "M",
+            900: "CM",
+            500: "D",
+            400: "CD",
+            100: "C",
+            90: "XC",
+            50: "L",
+            40: "XL",
+            10: "X",
+            9: "IX",
+            5: "V",
+            4: "IV",
+            1: "I"
+        }
+        res = []
+        for key, value in hashMap.items():
+            if num == 0:
+                break
+            count = num // key
+            res.append(value * count)
+            num -= count * key
+        
+        return "".join(res)
+    
+                    
+                
+      
+        
+        
+        
 result = Solution()
-t = result.addStrings(num1 = "11", num2 = "123")
+result.intToRoman(num = 3749)

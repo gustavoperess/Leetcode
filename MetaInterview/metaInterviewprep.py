@@ -346,10 +346,20 @@ class Solution:
         return "".join(res)
     
                     
-                
-      
+    def binarySearch(self, numbers: List[int], toFind: int) -> bool: 
+        l,r = 0, len(numbers) - 1
+        while l <= r:
+            mid = (l + r) // 2
+            if numbers[mid] < toFind:
+                l = mid + 1
+            elif numbers[mid] > toFind:
+                r = mid - 1 
+            else:
+                return True
+        return False
         
         
         
 result = Solution()
-result.intToRoman(num = 3749)
+
+

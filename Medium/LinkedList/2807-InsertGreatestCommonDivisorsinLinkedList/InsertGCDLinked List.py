@@ -9,8 +9,6 @@ class ListNode:
         
 class Solution:
     def insertGreatestCommonDivisors(self, head: Optional[ListNode]) -> Optional[ListNode]:
-
-        
         def findGCD(n1, n2):
             while n2:
                 n1, n2 = n2, n1%n2

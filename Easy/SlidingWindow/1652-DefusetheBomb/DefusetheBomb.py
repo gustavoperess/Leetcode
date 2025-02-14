@@ -19,11 +19,19 @@ class Solution:
                 r = (i - k) % l
                 wsum+=-code[-i]+code[-r]
                 ans[-i]=wsum
-                print(r, code[r], wsum)
+        
         return ans
+    
+    def findMaxAverage(self, nums: List[int], k: int) -> float:
+        currSum = maxSum = sum(nums[:k])
+        for i in range(k, len(nums)):
+            currSum += nums[i] - nums[i - k]
+            maxSum = max(maxSum, currSum)
+        return maxSum / k
       
 
 
 result = Solution()
 # result.decrypt(code = [5,7,1,4], k = 3)
-result.decrypt(code = [2,4,9,3], k = -2)
+# result.decrypt(code = [2,4,9,3], k = -2)
+result.findMaxAverage(nums = [1,12,-5,-6,50,3], k = 4)

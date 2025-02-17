@@ -1,7 +1,7 @@
 from typing import List
 # tried to do using recursion , got TLE , will come back to this someday
 class Solution:
-    def smallestRange(self, nums: List[List[int]]) -> List[int]:
+    def smallestRange(self, nums: List[List[int]]) -> List[int]:      
         def removen(nums):
             mi = float('inf')
             ma = float('-inf')

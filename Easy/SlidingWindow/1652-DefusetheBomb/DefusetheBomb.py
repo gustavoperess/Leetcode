@@ -28,10 +28,30 @@ class Solution:
             currSum += nums[i] - nums[i - k]
             maxSum = max(maxSum, currSum)
         return maxSum / k
+    
+    def countKConstraintSubstrings(self, s: str, k: int) -> int:
+        ans = 0
+        for i in range(len(s)):
+            czero = 0
+            cone = 0
+            for y in range(i, len(s)):
+                if s[y] == '0':
+                    czero += 1
+                else:
+                    cone += 1
+                if czero <= k or cone <= k:
+                    ans += 1
+        return ans
+                
+    def maxProfit(self, prices: List[int]) -> int:
+        for i in range(len(prices)):
+            t = prices[i - 1]
+            print(t)
+
+          
+                
       
 
 
 result = Solution()
-# result.decrypt(code = [5,7,1,4], k = 3)
-# result.decrypt(code = [2,4,9,3], k = -2)
-result.findMaxAverage(nums = [1,12,-5,-6,50,3], k = 4)
+result.maxProfit(prices = [7,1,5,3,6,4])

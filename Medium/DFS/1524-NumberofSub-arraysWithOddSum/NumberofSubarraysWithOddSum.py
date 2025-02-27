@@ -21,15 +21,5 @@ class Solution:
                 return i
         return -1
     
-    def maxAbsoluteSum(self, nums: List[int]) -> int:
-        maxNum = 0
-        for i in range(len(nums)):
-            for y in range(i, len(nums)):
-                subarrays = abs(sum(nums[i: y + 1]))
-                maxNum = max(maxNum, subarrays)
-        return (maxNum)
-      
 
-result = Solution()
-result.maxAbsoluteSum(nums = [1,-3,2,3,-4])
-result.maxAbsoluteSum(nums = [2,-5,1,-4,3,-2])
+    

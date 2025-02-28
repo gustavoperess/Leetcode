@@ -35,7 +35,17 @@ class Solution:
             if boxes[i] == "1":
                 suffixCount += 1
                 suffixSum += i
-        print(balls)
         
+    def findArray(self, pref: List[int]) -> List[int]:
+        res = [0] * len(pref)
+        res[0] = pref[0]
+        xor_i = len(pref) - 1
+        for i in range(len(pref) - 2, - 1, - 1):
+            res[xor_i] = pref[i] ^ pref[i + 1]
+            xor_i -= 1
+        return res
+            
 result = Solution()
-result.minOperations(boxes = "001011")
+# result.minOperations(boxes = "001011")
+result.findArray(pref = [5,2,0,3,1])
+

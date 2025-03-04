@@ -42,45 +42,25 @@ class Solution:
                     maxNumber = k
                     maxBinary = n
         return maxBinary
-
-    def executeInstructions(self, n: int, startPos: List[int], s: str) -> List[int]:
-        ans = []
-        startY, startx = startPos
-        for r in range(len(s)):
-            x, y = startx, startY
-            count = 0
-            for c in range(r, len(s)):
-                if s[c] == "R":
-                    if x + 1 < n:
-                        x += 1
-                        count += 1
-                    else:
-                        break
-                elif s[c] == "D":
-                    if y + 1 < n:
-                        y += 1
-                        count += 1
-                    else:
-                        break
-                elif s[c] == "L":
-                    if x - 1 >= 0:
-                        x -= 1
-                        count += 1
-                    else:
-                        break
-                elif s[c] == "U":
-                    if y - 1 >= 0:
-                        y -= 1
-                        count += 1
-                    else:
-                        break
-            ans.append(count)
-                 
-                
-                
+    
+    def replaceDigits(self, s: str) -> str:
+        ans = ["0"] * len(s)
+        if s[-1].isalpha():
+            ans[-1] = s[-1]
+        for i in range(len(s) - 1):
+            if i % 2 == 0:
+                ans[i] = s[i]
+                k = ord(s[i]) - 97 + int(s[i+1])
+                u = chr(k + 97)
+                ans[i + 1] = u
         print(ans)
-            
+         
+        return "".join(ans)
+        
 result = Solution()
-result.executeInstructions( n = 3, startPos = [0,1], s = "RRDDLU")
+result.replaceDigits(s = "a1c1e1")
 # result.stringHash(s = "mxz", k = 2)
 #result.prefixCount(words = ["pay","attention","practice","attend"], pref = "at")
+
+
+

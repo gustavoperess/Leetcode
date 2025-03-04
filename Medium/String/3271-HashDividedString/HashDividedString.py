@@ -53,12 +53,41 @@ class Solution:
                 k = ord(s[i]) - 97 + int(s[i+1])
                 u = chr(k + 97)
                 ans[i + 1] = u
-        print(ans)
-         
         return "".join(ans)
+         
+        
+    def checkPowersOfThree(self, n: int) -> bool:
+        x = 2
+        powers = []
+        power = 0
+        
+        while 3 ** power <= n:
+            k = 3 ** power
+            x += k
+            if k == n:
+                return True
+            powers.append(k)
+            power += 1
+      
+
+        def dfs(i, total):
+            if total == n:
+                return True
+            if i == len(powers) or total > n:
+                return False
+            
+            if dfs(i  + 1, total + powers[i]):
+                return True
+            return dfs(i + 1, total)
+        
+        return dfs(0, 0)
+        
+            
+    
+        
         
 result = Solution()
-result.replaceDigits(s = "a1c1e1")
+print(result.checkPowersOfThree(91))
 # result.stringHash(s = "mxz", k = 2)
 #result.prefixCount(words = ["pay","attention","practice","attend"], pref = "at")
 

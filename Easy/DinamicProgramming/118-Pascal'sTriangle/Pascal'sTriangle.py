@@ -45,7 +45,5 @@ class Solution:
         return False
         
 
-result = Solution()
-result.generate(5)
-result.judgeCircle(moves = "UD")
-result.generateParenthesis(1)
+      
+

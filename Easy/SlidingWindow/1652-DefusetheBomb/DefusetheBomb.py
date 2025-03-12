@@ -42,16 +42,15 @@ class Solution:
                 if czero <= k or cone <= k:
                     ans += 1
         return ans
-                
-    def maxProfit(self, prices: List[int]) -> int:
-        for i in range(len(prices)):
-            t = prices[i - 1]
-            print(t)
 
-          
-                
+    
+    
+                        
+        
+            
+         
+      
+        
       
 
-
 result = Solution()
-result.maxProfit(prices = [7,1,5,3,6,4])

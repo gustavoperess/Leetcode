@@ -20,10 +20,20 @@ class Solution:
         return ans
     
         
+    def findMaxConsecutiveOnes(self, nums: List[int]) -> int:
+        count, ans = 0,0
+        for i in range(len(nums)):
+            if nums[i] == 1:
+                count += 1
+                ans = max(ans, count)
+            else:
+                count = 0
+        print(ans)
+        return ans
 
 
 
 result = Solution()
 #result.longestOnes(nums = [0,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1], k = 3)
 #result.longestOnes(nums = [1,1,1,0,0,0,1,1,1,1,0], k = 2)
-result.longestOnes(nums = [1,0,0,0,1], k = 1)
+result.findMaxConsecutiveOnes(nums = [1,1,0,1,1,1])

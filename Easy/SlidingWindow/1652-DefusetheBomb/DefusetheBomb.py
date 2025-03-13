@@ -42,15 +42,23 @@ class Solution:
                 if czero <= k or cone <= k:
                     ans += 1
         return ans
-
     
     
-                        
-        
-            
+    def countCompleteSubarrays(self, nums: List[int]) -> int:
+        s = set(nums)
+        count = 0
+        for i in range(len(nums)):
+            for y in range(i, len(nums)):
+                substrings = nums[i:y + 1] 
+                if set(substrings) == s:
+                    count += 1
+        return count            
+                    
          
       
         
       
 
 result = Solution()
+#result.countCompleteSubarrays(nums = [5,5,5,5])
+result.countCompleteSubarrays(nums = [1,3,1,2,2])

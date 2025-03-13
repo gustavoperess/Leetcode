@@ -1,5 +1,4 @@
 
-
 class Solution:
     def minimumRecolors(self, blocks: str, k: int) -> int:
         l, count = 0, 0
@@ -14,11 +13,9 @@ class Solution:
                 l += 1
     
         return ans
-            
-                    
-            
     
     
+
     
 result = Solution()
 #result.minimumRecolors(blocks = "WBBWWWWBBWWBBBBWWBBWWBBBWWBBBWWWBWBWW", k = 15)

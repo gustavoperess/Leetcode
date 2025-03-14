@@ -46,6 +46,17 @@ class Solution:
                     ans = max(ans, curr_sum)
             return ans
 
+    def maximumStrongPairXor(self, nums: List[int]) -> int:
+        # brute force
+        ans = 0
+        for i in range(len(nums)):
+            for y in range(i, len(nums)):
+                if nums[i] != nums[y] and abs(nums[i] - nums[y]) <= min(nums[i], nums[y]):
+                    ans = max(ans, nums[i] ^ nums[y])
+        return ans
+    
 
+        
+        
 result = Solution()
-result.maximumSubarraySum(nums = [1,5,4,2,9,9,9], k = 3)
+#result.maximumSubarraySum(nums = [1,5,4,2,9,9,9], k = 3)

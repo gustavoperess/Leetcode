@@ -69,9 +69,55 @@ class Solution:
             ans = max(ans, r - l + 1)
         return ans
     
+    def divisorSubstrings(self, num: int, k: int) -> int:
+        number = str(num)
+        count = 0
+        for i in range(0, len(number) - k + 1):
+            n = int(number[i:i + k])
+            if n > 0:
+                if int(num) % n == 0:
+                    count += 1
+        return count
+      
+    def minimumDifference(self, nums: List[int], k: int) -> int:
+        nums.sort()
+        k -= 1
+        min_diff = float("inf")
+        for i in range(0,len(nums) - k):   
+            min_diff = min(min_diff, nums[i+k]-nums[i])
+        #     window = nums[i:i + k]
+        #     diff = abs(-sum(abs(window[j + 1] - window[j]) for j in range(len(window)- 1)))
+        #     ans = min(ans, diff)
+        return min_diff
     
- 
+    def numOfSubarraysTLE(self, arr: List[int], k: int, threshold: int) -> int:
+        # TLE
+        hashMap = {}
+        l = 0
+        ans = 0
+        for i in range(len(arr)):
+            if arr[i] in hashMap:
+                hashMap[arr[i]] += 1
+            else:
+                hashMap[arr[i]] = 1
+            
+            while sum(hashMap.values()) == k:
+                for key, value in hashMap.items():
+                    s +=  key * value
+                if s / k >= threshold:
+                    ans += 1
+                hashMap[arr[l]] -= 1
+                if hashMap[arr[l]] == 0:
+                    del hashMap[arr[l]]
+                l += 1
+        return ans
+    
+    
         
 result =Solution()
 # result.maximumLengthSubstring(s = "bcbbbcba")
 # result.divideArray(nums = [3,2,3,2,2,2])
+# result.divisorSubstrings(num = 240, k = 2)
+
+#result.longestSubarray(nums = [1,1,0,1])
+#result.longestSubarray(nums = [1,1,1])

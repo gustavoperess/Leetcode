@@ -30,3 +30,4 @@ class Solution:
 
 result = Solution()
 result.longestSubarray(nums = [0,1,1,1,0,1,1,0,1])
+

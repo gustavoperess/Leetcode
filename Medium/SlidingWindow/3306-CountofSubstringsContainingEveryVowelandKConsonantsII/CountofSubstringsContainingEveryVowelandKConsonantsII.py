@@ -1,3 +1,6 @@
+from collections import defaultdict
+
+
 class Solution:
     def countOfSubstringsBruteFoce(self, word: str, k: int) -> int:
         # BRUTE FORCE 
@@ -48,8 +51,8 @@ class Solution:
                     l += 1
             return ans
         return atleastK(k) - atleastK(k + 1)
-
-        
+    
+   
         
 result = Solution()
-result.countOfSubstrings(word = "ieaouqqieaouqq", k = 1)
+#result.countOfSubstrings(word = "ieaouqqieaouqq", k = 1)

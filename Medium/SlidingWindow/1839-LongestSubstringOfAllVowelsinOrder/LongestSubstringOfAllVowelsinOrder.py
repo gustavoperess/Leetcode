@@ -112,12 +112,49 @@ class Solution:
                 l += 1
         return ans
     
+    def longestNiceSubarray(self, nums: List[int]) -> int:
+        n = len(nums)
+        max_length = 1
+        l = 0
+        used_bits = 0
+        for r in range(n):
+            while used_bits & nums[r] != 0:
+                used_bits ^= nums[l]
+                l += 1
+            used_bits |= nums[r]
+            max_length = max(max_length, r - l + 1)
+        return max_length
     
-        
-result =Solution()
-# result.maximumLengthSubstring(s = "bcbbbcba")
-# result.divideArray(nums = [3,2,3,2,2,2])
-# result.divisorSubstrings(num = 240, k = 2)
+    def minOperations(self, nums: List[int]) -> int:
+        t = all(i == 1 for i in nums)
+        if t:
+            return 0
+        hashMap = {} 
+        flips = 0
+        k = 3 
 
-#result.longestSubarray(nums = [1,1,0,1])
-#result.longestSubarray(nums = [1,1,1])
+        for i in range(len(nums)):
+            if i >= k and (i - k) in hashMap:
+                flips -= hashMap[i - k]  
+
+            if flips % 2 == 1:
+                nums[i] = 1 - nums[i]
+            
+            if nums[i] == 0:
+                if i + k > len(nums):
+                    return -1
+                hashMap[i] = 1 
+                flips += 1     
+   
+        if len(hashMap) > 0:
+            return sum(hashMap.values())
+        return -1
+
+           
+                
+    
+
+result = Solution()
+#result.minOperations(nums = [0,1,1,1,0,0])
+#result.minOperations([1,1,0,1,1,0,1])
+result.minOperations(nums = [1,1,1,0])

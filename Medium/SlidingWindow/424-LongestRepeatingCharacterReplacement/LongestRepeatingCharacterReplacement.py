@@ -1,6 +1,5 @@
 
 
-
 class Solution:
     def characterReplacement(self, s: str, k: int) -> int:
         hashMap = {}
@@ -20,7 +19,8 @@ class Solution:
             ans = max(ans, r - l + 1)
         return ans 
             
-       
+
+
             
         
         

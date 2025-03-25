@@ -1,4 +1,4 @@
-
+from typing import List
 class Solution:
     def mergeAlternately(self, word1: str, word2: str) -> str:
         ans = ""
@@ -25,7 +25,26 @@ class Solution:
         ans.append(word2[j:])
         return  "".join(ans)
     
+    def removeDuplicates(self, nums: List[int]) -> int:
+        i, j = 0, len(nums) - 1
+        k = 0
+        while i < j:
+            if nums[i] != nums[i + 1]:
+                nums[k] = nums[i]
+                k += 1
+            i += 1
+        nums[k] = nums[j]
+        return k + 1
+    
+
+
+  
+
+    
 
 
 result = Solution()
 result.mergeAlternatelySlidingWindownApproach( word1 = "ab", word2 = "pqrs")
+result.removeDuplicates(nums = [0,0,1,1,1,2,2,3,3,4])
+
+#result.removeDuplicates([1,1,2])

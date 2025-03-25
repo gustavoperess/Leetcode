@@ -34,9 +34,9 @@ class Solution:
                     ans.add(s)  
                     l += 1
                     r -= 1
-        return list(ans)
-        return ans
-  
+        return list(ans)  
+    
+
 
 
 result = Solution()

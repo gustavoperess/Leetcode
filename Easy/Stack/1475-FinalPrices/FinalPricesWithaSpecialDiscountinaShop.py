@@ -20,7 +20,21 @@ class Solution:
                 ans[j] -= prices[i]
             stack.append(i)
         return ans
+    
+    def reversePrefix(self, word: str, ch: str) -> str:
+        k = 0
+        stack = []
+        for i,c in enumerate(word):
+            stack.append(c)
+            
+            if c == ch:
+                return "".join(reversed(stack)) + word[i + 1:]
+        print(word)
+        return word
+    
 result = Solution()
 #result.finalPrices(prices = [8,4,6,2,3])
 #result.finalPrices([4,7,1,9,4,8,8,9,4])
 result.finalPrices(prices = [10,1,1,6])
+x = result.reversePrefix(word = "abcdefd", ch = "d")
+print(x)

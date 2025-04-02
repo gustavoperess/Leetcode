@@ -44,10 +44,11 @@ class Solution:
         for i in range(len(items) - 1):
             max_width = max(max_width, items[i + 1] - items[i])
         return max_width
-  
+        
         
         
 result = Solution()
 result.countPairs(nums = [-1,1,2,3,1], target = 2)
 # result.maxWidthOfVerticalArea(points = [[8,7],[9,9],[7,4],[9,7]])
 result.maxWidthOfVerticalArea(points = [[3,1],[9,0],[1,0],[1,4],[5,3],[8,8]])
+result.doubleChar(600)

@@ -20,6 +20,16 @@ class Solution:
         node.next = list1 or list2
         
         return dummy.next
+    
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+        node = ListNode()
+        index = 0
+        while head:
+            
+            node.next = head.next
+            head = head.next
+        return node.next
+            
             
     def create_linked_list(self, values: List[int]) -> Optional[ListNode]:
         if not values:
@@ -40,7 +50,10 @@ class Solution:
 
 
 solution = Solution()
-list1 = solution.create_linked_list([1,2,4])
-list2 = solution.create_linked_list([1,3,4])
-merged = solution.mergeTwoLists(list1, list2)
-solution.print_list(merged)
+head = [3,2,0,-4]
+m = solution.create_linked_list(head)
+solution.hasCycle(m)
+# list1 = solution.create_linked_list([1,2,4])
+# list2 = solution.create_linked_list([1,3,4])
+# merged = solution.mergeTwoLists(list1, list2)
+# solution.print_list(merged)

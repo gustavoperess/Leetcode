@@ -8,13 +8,30 @@ class ListNode:
         self.next = next
         
 class Solution:
-    def frequenciesOfElements(self, head: Optional[ListNode]) -> Optional[ListNode]:
-        current = head
-        print(current.val, current.next.val)
-        
     def reorderList(self, head: Optional[ListNode]) -> None:
-        print(head, head.next, head.val)
+        slow, fast = head, head.next
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
         
+        second  = slow.next
+        slow.next = None
+        prev = None
+        while second:
+            tmp = second.next
+            second.next = prev
+            prev = second
+            second = tmp
+        
+        first, second = head, prev
+        while second:
+            temp1, temp2 = first.next, second.next
+            first.next =  second
+            second.next = temp1
+            first, second = temp1, temp2
+        
+
+            
     
     
     def create_linked_list(self, values: List[int]) -> Optional[ListNode]:
@@ -29,10 +46,8 @@ class Solution:
 
 
 
-head_values = [1,1,2,2,2]
-reoder = [1,2,3,4]
+reoder = [1,2,3,4,5]
 solution = Solution()
-head = solution.create_linked_list(head_values)
 new_headTwo = solution.create_linked_list(reoder)
 solution.reorderList(new_headTwo)
-new_head = solution.frequenciesOfElements(head)
+

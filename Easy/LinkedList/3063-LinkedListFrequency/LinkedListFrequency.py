@@ -10,11 +10,21 @@ class ListNode:
 class Solution:
     def frequenciesOfElements(self, head: Optional[ListNode]) -> Optional[ListNode]:
         current = head
-        print(current.val, current.next.val)
+        
         
     def reorderList(self, head: Optional[ListNode]) -> None:
-        print(head, head.next, head.val)
+        pass
         
+        
+    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> Optional[ListNode]:
+        one = headA
+        two = headB
+        while one != two:
+            one = headB if one is None else one.next
+            two = headA if two is None else two.next
+        print(one)
+        return one
+
     
     
     def create_linked_list(self, values: List[int]) -> Optional[ListNode]:
@@ -36,3 +46,11 @@ head = solution.create_linked_list(head_values)
 new_headTwo = solution.create_linked_list(reoder)
 solution.reorderList(new_headTwo)
 new_head = solution.frequenciesOfElements(head)
+
+
+listA = [4,1,8,4,5]
+listB = [5,6,1,8,4,5]
+
+one = solution.create_linked_list(listA)
+two = solution.create_linked_list(listB)
+solution.getIntersectionNode(one, two)

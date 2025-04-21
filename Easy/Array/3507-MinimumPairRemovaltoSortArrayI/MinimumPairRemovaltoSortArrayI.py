@@ -1,5 +1,6 @@
 from typing import List
 
+
 class Solution:
     def minimumPairRemoval(self, nums: List[int]) -> List[int]:
             def is_non_decreasing(arr):
@@ -27,8 +28,12 @@ class Solution:
                 count += 1
             return count
         
+                    
 
+        
 
 result = Solution()
 result.minimumPairRemoval( nums = [5,2,3,1])
+result.countFairPairs(nums = [0,1,7,4,4,5], lower = 3, upper = 6)
+result.countFairPairs(nums = [1,7,9,2,5], lower = 11, upper = 11)
 result.minimumPairRemoval(nums = [1,2,2])

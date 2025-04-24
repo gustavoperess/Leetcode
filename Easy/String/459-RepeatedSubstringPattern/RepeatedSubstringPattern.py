@@ -52,7 +52,19 @@ class Solution:
         for i in hashMap.values():
             ans += max(i)
         return ans
-              
+    
+    def climbStairs(self, n: int) -> int:
+        if n == 0 or n == 1:
+            return 1
+        prev, curr = 1, 1
+        for _ in range(2, n + 1):
+            temp = curr
+            curr = prev + curr
+            prev = temp
+        
+  
+    
+        
         
         
 result = Solution()
@@ -60,7 +72,7 @@ result = Solution()
 # result.longestNiceSubstring( s = "BebjJE")
 # result.arrayPairSum( nums = [6,2,6,5,1,2])
 # result.repeatedSubstringPattern(s = "abcabcabcabc")
-result.equalFrequency(word = "abbcc")# true
+result.climbStairs(4)# 5
 # result.equalFrequency(word = "bac")# true
 # result.equalFrequency(word = "aazz") # true
 result.deleteGreatestValue(grid = [[1,2,4],[3,3,1]])

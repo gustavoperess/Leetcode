@@ -62,17 +62,44 @@ class Solution:
             curr = prev + curr
             prev = temp
         
-  
-    
+        return curr
+    def numberOfSubarrays(self, nums: List[int], k: int) -> int:
+        hashMap = {0: 1}
+        count = 0
+        isOdd = 0
+
+        for i in range(len(nums)):
+            if nums[i] % 2 == 1:
+                isOdd += 1
+                
+            if (isOdd - k) in hashMap:
+                count += hashMap[isOdd - k]
+            
+            if isOdd in hashMap:
+                hashMap[isOdd] += 1
+            else:
+                hashMap[isOdd] = 1
         
+        return count
+        
+
+        
+                    
+    
+                
         
         
 result = Solution()
+
+
 # result.longestNiceSubstring( s = "YazaAay")
 # result.longestNiceSubstring( s = "BebjJE")
 # result.arrayPairSum( nums = [6,2,6,5,1,2])
 # result.repeatedSubstringPattern(s = "abcabcabcabc")
 result.climbStairs(4)# 5
+
+#result.numberOfSubarrays(nums = [1,1,2,1,1], k = 3)
+result.numberOfSubarrays(nums = [2,2,2,1,2,2,1,2,2,2], k = 2)
 # result.equalFrequency(word = "bac")# true
 # result.equalFrequency(word = "aazz") # true
 result.deleteGreatestValue(grid = [[1,2,4],[3,3,1]])

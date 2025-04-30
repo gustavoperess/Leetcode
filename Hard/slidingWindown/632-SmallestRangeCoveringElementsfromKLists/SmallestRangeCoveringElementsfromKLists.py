@@ -15,6 +15,7 @@ class Solution:
             return None  
         
         t = removen(nums)
+        print(t)
 
         for n in nums:
             if t[0] in n:

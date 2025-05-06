@@ -36,6 +36,7 @@ class Solution:
             dfs(i + 1)
         
         dfs(0)
+        print(ans)
         return ans
         
 

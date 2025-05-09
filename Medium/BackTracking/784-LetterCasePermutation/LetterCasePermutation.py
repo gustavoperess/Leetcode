@@ -21,3 +21,5 @@ class Solution:
        
 result = Solution()
 result.letterCasePermutation(s = "a1b2")
+
+

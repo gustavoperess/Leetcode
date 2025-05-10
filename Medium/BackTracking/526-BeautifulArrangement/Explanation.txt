@@ -1,0 +1,75 @@
+Understanding the algorithm
+
+
+Base case when len(arr) reaches N size. 
+
+will loop from 1 to n + 1
+
+if i not in temp array and  the remaining of i / index == 0, or index / i == 0:
+append  i to the temp array
+so for example first loop = 1:
+    will check if i % 1 == 0:
+        1 % 1(index) == 0:
+        will add 1 to temp = [1]
+        call dfs again increasing index by 1, index now = 2
+    second loop 
+    will check 1 again, however 1 it is already in the array
+        check 2 now, 2 % 2(index) == 0:
+        will add two to temp [1,2]
+         call dfs again increasing index by 1, index now equal 3 
+    third loop 
+    will check 1, and 2 however both are already in the array
+        check 3 % 3(index) == 0:
+        will add 3 to temp [1,2,3]
+        call dfs again increasing index by 1, index now equal 4
+    
+    base case len(temp) now equal 3:
+      adds to the count 1:
+    
+    once it reaches the base quase it return back up 
+    pop [1,2,3]
+    pop[1,2]
+    pop[1]
+    array it is empty now. 
+
+
+Now we repeat the process  on the second loop = 2:
+    will check if 2 it is already in the array and if 2 % 1 == 0 or 1 % 2 == 0:
+       2 not in the array and  2 % 1(index) == 0:
+        will add 2 to temp = [2]
+        call dfs again increasing index by 1, index now = 2
+    second loop 
+    will check 2 again, however 2 it is already in the array
+        check 3 now, 3 % 2(index) != 0 and 2 % 3 != 0:
+        will not  add 3 to temp [2]
+    will check if 1 it is in the array
+        check 1 % 3(index) == 0 or 3 % 1 == 0:
+        will add 3 to temp [2,1]
+        call dfs again increasing index by 1, index now equal 3
+    will check 3 again because 3 is the only one left and the index is now 3
+           check 3 % 3(index) == 0:
+            add 3 to temp [2,1,3]
+   
+    base case len(temp) now equal 3:
+      adds to the count 1:
+    
+    once it reaches the base quase it return back up 
+    pop [2,1,3]
+    pop [1,3]
+    pop[1]
+    array it is empty now. 
+    
+
+
+
+Check if every number inside of the permutation is 
+divisible by index or if the index is divisible by the number
+
+
+Time Complexity?  (O!)
+Space Complexity? O(n)
+
+
+
+We skip some braches (skipping invalid branches)
+because we loop n times as we are doing permutations 

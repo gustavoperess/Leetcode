@@ -72,9 +72,14 @@ class Solution:
                 nums2count[r] -= min_
         return product_sum
         
+    
+
+        
+        
 
 
 result = Solution()
-result.minOperations(boxes = "001011")
-result.minProductSum(nums1 = [5,3,4,2], nums2 = [4,2,2,5])
+
+# result.minOperations(boxes = "001011")
+# result.minProductSum(nums1 = [5,3,4,2], nums2 = [4,2,2,5])
 

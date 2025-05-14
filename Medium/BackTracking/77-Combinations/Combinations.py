@@ -11,7 +11,6 @@ class Solution:
                 return
             
             for number in range(index, n + 1): 
-                
                 subsets.append(number)
                 backtrack(number + 1)
                 subsets.pop()

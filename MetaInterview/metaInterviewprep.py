@@ -357,9 +357,24 @@ class Solution:
             else:
                 return True
         return False
+    
+    def binarySearchWithRecursion(self, numbers: List[int], l: int, r: int, toFind: int ) -> bool:
+        if l > r:
+            return False
+        mid = (l + r) // 2
         
+        if toFind == numbers[mid]:
+            return True
         
+        if (toFind < numbers[mid]):
+            return self.binarySearchWithRecursion(numbers, l, mid - 1, toFind)
+        return self.binarySearchWithRecursion(numbers, mid + 1, r, toFind)
         
 result = Solution()
+r = result.binarySearchWithRecursion([0,1,5,6,8,10,30,35], 0, 7, 8)
+print(r)
+
+
+
 
 

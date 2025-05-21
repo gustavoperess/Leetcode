@@ -29,8 +29,33 @@ class Solution:
             if nums[i] > sub[i]:
                 return False
         return True
+    
+    def leftRightDifference(self, nums: List[int]) -> List[int]:
+        prefix = 0
+        sufix = sum(nums)
+        ans = []
+        for x in nums:
+            prefix += x
+            ans.append(abs(prefix - sufix))
+            sufix -= x
+        return ans
 
+        
+    def findMiddleIndex(self, nums: List[int]) -> int:
+        prefix  = 0
+        sufix = sum(nums)
+        for i, x in enumerate(nums):
+            prefix += x
+            if prefix == sufix:
+                return i
+            sufix -= x
+        return -1
+        
+        
 result = Solution()
-result.isZeroArray(nums = [4,3,2,1], queries = [[1,3],[0,2]])
+#result.findMiddleIndex(nums = [2,3,-1,8,4])
+result.findMiddleIndex(nums = [1,-1,4])
+#result.isZeroArray(nums = [4,3,2,1], queries = [[1,3],[0,2]])
+#result.leftRightDifference(nums = [10,4,8,3])
 #result.isZeroArray( nums = [1,0,1], queries = [[0,2]])
 #result.isZeroArray( nums = [1,0,2,1,2], queries = [[0,2], [1,3], [0,4], [4,4]])

@@ -24,11 +24,45 @@ class Solution:
                 l += 1
             
         ans = [key for key,value  in hashMap.items() if value >= 2]
-        print()
         return ans
-        
-        
+    
+    
+    def countPrefixSuffixPairs(self, words: List[str]) -> int:
+        count = 0
+        for i in range(len(words)):
+            for y in range(i + 1, len(words)):
+                x = words[y]
+                if x.startswith(words[i]) and x.endswith(words[i]):
+                    count += 1
+                
+    
+        return count
+    
+    def kthCharacter(self, k: int) -> str:
+        prev = ""
+        ans = ""
+        word = "a"
+        while len(word) < k:
+            next_part = ''
+            for ch in word:
+                if ch == "z":
+                    next_part += "a"
+                else:
+                    next_part += chr(ord(ch) + 1)
+                
+            word += next_part
 
+        print(word)
+         
+            
+            
+            
+       
 
 result = Solution()
-result.findRepeatedDnaSequences( s = "AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT")
+
+result.kthCharacter( k = 500)
+#result.minOperations( boxes = "001011")
+#result.countMatchingSubarrays(nums = [1,4,4,1,3,5,5,3], pattern = [1,0,-1])
+result.countPrefixSuffixPairs( words = ["a","aba","ababa","aa"])
+#result.countPrefixSuffixPairs( words = ["pa","papa","ma","mama"])

@@ -13,7 +13,7 @@ def fib(n, memo):
 n = 100
 memo = [None] * (n + 1)
 r = fib(n, memo)
-print(r)
+# print(r)
 
 
 def fibTwo(n):
@@ -23,6 +23,6 @@ def fibTwo(n):
         result = fibTwo(n - 1) + fibTwo(n - 2)
     return result
 
-# n = 5
-# rW = fibTwo(n)
-# print(rW)
+n = 10
+rW = fibTwo(n)
+print(rW)

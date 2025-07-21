@@ -1,5 +1,6 @@
 from typing import List
 import heapq
+import math
 
 class Solution:
     def numberGame(self, nums: List[int]) -> List[int]:
@@ -30,17 +31,18 @@ class Solution:
     def deleteGreatestValue(self, grid: List[List[int]]) -> int:
         ans = 0
     
-        for i,g in enumerate(grid):
+        for i,g in enumerate(grid): 
             l = len(g)
             x = [-i for i in g]
             heapq.heapify(x)
             for _ in range(l):
                 s = abs(heapq.heappop(x))
             
-            print(ans, s)
     
 
 
 result = Solution()
 result.getFinalState(nums = [2,1,3,5,6], k = 5, multiplier = 2)
 result.deleteGreatestValue(grid = [[1,2,4],[3,3,1]])
+
+print(math.sqrt(225))

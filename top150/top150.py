@@ -1,6 +1,6 @@
 from typing import List
-
-
+import collections
+import math
 class Soluiton:
     def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
         s = sorted(nums1[:m] + nums2[:n])
@@ -204,13 +204,88 @@ class Soluiton:
             self.mergeSort(arr, left, mid)
             self.mergeSort(arr, mid + 1, right)
             self.mergeS(arr, left, mid, right)
+            
+    
+    def maxScoreWords(self, words: List[str], letters: List[str], score: List[int]) -> int:
+        map = collections.Counter(letters)
+        ans = 0
+        def dfs(i, map, currScore):
+            nonlocal ans
+            ans = max(ans, currScore)
+            if i == len(words):
+                return
+            for w in range(i, len(words)):
+                tmpCounter = map.copy()
+                word = words[w]
+                isValid = True
+                count = 0
+                for ch in word:
+                    if ch in tmpCounter and tmpCounter[ch] > 0:
+                        tmpCounter[ch] -= 1
+                        count += score[ord(ch) - ord("a")]
+                    else:
+                        isValid = False
+                        break
+               
+                if isValid:
+                    print(count)
+                    dfs(i + 1, tmpCounter, count + currScore )           
+
+
+        dfs(0, map, 0)
+        return ans
     
             
 result = Soluiton()
-array = [1,5,6,2,4,5,6,8,10,3,340]
-result.mergeSort(array, 0, len(array) - 1)
-
-# print(array)
 
 
 
+
+def mistery(n):
+    s = [0] * (n + 1)
+    s[1] = 0
+    for i in range(2, n + 1):
+        s[i] = 1
+
+    for p in range(2, math.isqrt(n) + 1):
+        if s[p] == 1:
+            for f in range(p, (n//p) + 1):
+                s[f * p] = 0
+
+    for i in range(2, n + 1):
+        if s[i] == 1:
+            pass
+   
+mistery(100)
+
+
+# s = list, p = frist loop, n = number of items
+
+def sieve_recursive(s, p, n):
+    if p > math.isqrt(n):
+        return
+
+    if s[p] == 1:
+        mark_multiples(s, p, p, n)
+
+    sieve_recursive(s, p + 1, n)
+
+def mark_multiples(s, p, f, n):
+    if f > n // p:
+        return
+
+    s[f * p] = 0
+    mark_multiples(s, p, f + 1, n)
+
+
+def mistery_recursive(n):
+    s = [0] * (n + 1)
+    for i in range(2, n + 1):
+        s[i] = 1
+    
+    sieve_recursive(s, 2, n)
+    # for i,v in enumerate(s):
+    #     if v == 1:
+    #         print(i)
+   
+mistery_recursive(8)

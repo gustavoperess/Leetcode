@@ -52,19 +52,23 @@ class Solution:
                 #     tail.next = list2
                 #     list2 = list2.next
                 return dummy.next
-        
-            
-
+    def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
+        """
+        Do not return anything, modify nums1 in-place instead.
+        """
+        mindex = m - 1
+        nindex = n - 1
+        right = (m + n) - 1
+        while nindex >= 0:
+            if nums1[mindex] > nums2[nindex]:
+                nums1[right] =  nums1[mindex]
+                mindex -= 1
+            else:
+                nums1[right] = nums2[nindex]
+                nindex -= 1
+            right -= 1
+        return nums1
+    
+    
 result =Solution()
-# result.mergeKLists(lists = [[1,4,5],[2,3,4],[2,6]])
-
-
-
-head1 = ListNode(1)
-head1.next = ListNode(2)
-head1.next.next = ListNode(4)
-
-head2 = ListNode(1)
-head2.next = ListNode(3)
-head2.next.next = ListNode(4)
-result.mergeTwoLists(head1, head2)
+t = result.merge(nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3)

@@ -1,6 +1,8 @@
 from typing import List
 import collections
 import math
+import heapq
+
 class Soluiton:
     def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
         s = sorted(nums1[:m] + nums2[:n])
@@ -289,3 +291,171 @@ def mistery_recursive(n):
     #         print(i)
    
 mistery_recursive(8)
+
+
+
+# will always have an asnwer?
+# will the array 
+# if the remaining is in the hashmap, i return the has
+def twoSum(nums: List[int], target: int) -> List[int]:
+    if len(nums) < 2:
+        return [-1,-1]
+    # for i in range(len(nums)):
+    #     for y in range(i + 1, len(nums)):
+    #         if nums[i] + nums[y] == target:
+    #             return [i, y]
+    # return [-1, -1]
+    hashMap = {}
+    for i in range(len(nums)):
+        remaining = target - nums[i]
+        if remaining in hashMap:
+            return [hashMap[remaining], i]
+        hashMap[nums[i]] = i
+    return [-1, -1]
+
+t = twoSum(nums = [11,8,7,10], target = 9)
+#t = twoSum(nums = [3,2,4], target = 6)
+
+def maxFreq(s: str, maxLetters: int, minSize: int, maxSize: int) -> int:
+    hashMap = {}    
+    for i in range(len(s) - minSize  + 1):
+        substring = (s[i: i + minSize])
+        if len(set(substring)) <= maxLetters:
+            if substring in hashMap:
+                hashMap[substring] += 1
+            else:
+                hashMap[substring] = 1
+    return max(hashMap.values()) if hashMap else 0
+
+
+
+maxFreq(s = "aababcaab", maxLetters = 2, minSize = 3, maxSize = 4)
+maxFreq(s = "abcde", maxLetters = 2, minSize = 3, maxSize = 3)
+
+
+def topKFrequent(nums: List[int], k: int) -> List[int]:
+    hashMap = {}
+    freq = [[] for i in range(len(nums) + 1)]
+    for n in nums:
+        if n in hashMap:
+            hashMap[n] += 1
+        else:
+            hashMap[n] = 1
+    
+    for key,value in hashMap.items():
+        freq[value].append(key)
+        
+    result = []
+    for i in range(len(freq) - 1, 0 , -1):
+        for x in freq[i]:
+            result.append(x)
+            if len(result) == k:
+                return result
+        
+        
+    
+#topKFrequent( nums = [3,1,1,1,2,2], k = 2)
+topKFrequent( nums = [-1,-1], k = 1)
+#topKFrequent( nums = [1], k = 1)
+
+
+def minMeetingRooms(intervals: List[List[int]]) -> int:
+    if not intervals:
+       return 0
+    result = []
+    intervals.sort(key=lambda x:x[0])
+    heapq.heappush(result, intervals[0][1])
+    for i in range(1, len(intervals)):
+        if  result[0] <= intervals[i][0]:
+            # print(result)
+            heapq.heappop(result)
+            
+        heapq.heappush(result, intervals[i][1])
+            
+    
+
+
+#minMeetingRooms(intervals = [[0,30],[5,10],[15,20]])
+t = minMeetingRooms(intervals = [[1,10],[2,7],[3,19],[8,12],[10,20],[11,30]])
+
+
+
+def mergeIntervals(intervals: List[List[int]]) -> List[List[int]]:
+    if not intervals:
+        return []
+    
+    intervals.sort(key=lambda x:x[0])
+    ans = [intervals[0]]
+    for i in range(1, len(intervals)):
+        if intervals[i][0] <= ans[-1][1]:
+            ans[-1] = [min(ans[-1][0], intervals[i][0]), max(ans[-1][1], intervals[i][1])]
+        else:
+            ans.append(intervals[i])
+    return ans
+
+
+mergeIntervals(intervals = [[1,3],[2,6],[8,10],[15,18]])
+mergeIntervals(intervals = [[1,4],[4,5]])
+
+
+
+def twoSumTws(nums: List[int], target: int) -> List[int]:
+        hashMap =  {}
+        for i in range(len(nums)):
+            remainder = target - nums[i]
+            print(remainder)
+            if remainder in hashMap:
+                print(hashMap[remainder], hashMap, i)
+                # return [hashMap[remainder], i]
+            hashMap[nums[i]] = i
+
+
+
+# twoSumTws(nums = [2,7,11,15], target = 9)
+
+
+
+def intervalIntersection(firstList: List[List[int]], secondList: List[List[int]]) -> List[List[int]]:
+    ans = []
+    i, j = 0, 0 
+    
+    while i < len(firstList) and j < len(secondList):
+        
+        
+        
+        if firstList[i][1] < secondList[i][1]:
+            print(firstList[i][1] , secondList[j][1])
+            i += 1
+        else:
+            j += 1
+
+
+
+# intervalIntersection(firstList = [[0,2],[5,10],[13,23],[24,25]], secondList = [[1,5],[8,12],[15,24],[25,26]])
+
+
+
+def quickSort(a, low, high):
+    if low < high:
+        pi = partition(a, low, high)
+        quickSort(a, low, pi - 1)
+        quickSort(a, pi + 1, high)
+
+def partition(a, low, high):
+    pivot = a[high]
+    print(a[low:high])
+    i = low - 1
+    for j in range(low, high):
+        if a[j] <= pivot:
+            i += 1
+            swap(a, i, j)
+    swap(a, i + 1, high)        
+    return i + 1
+
+
+def swap(a, i, j):
+    a[i],a[j] = a[j], a[i]
+    
+A = [10,5,8,3,6]
+t = quickSort(A, 0, len(A) - 1)
+print(A)

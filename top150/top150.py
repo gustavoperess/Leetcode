@@ -443,7 +443,6 @@ def quickSort(a, low, high):
 
 def partition(a, low, high):
     pivot = a[high]
-    print(a[low:high])
     i = low - 1
     for j in range(low, high):
         if a[j] <= pivot:
@@ -458,4 +457,31 @@ def swap(a, i, j):
     
 A = [10,5,8,3,6]
 t = quickSort(A, 0, len(A) - 1)
-print(A)
+
+
+
+
+
+def permute(n: int) -> List[List[int]]:
+    sublists = []
+    visited = [False] * (n + 1)  
+    ans = []
+    def dfs():
+        if len(sublists) == n:
+            ans.append(sublists[::])
+            return 
+        
+        for num in range(1, n + 1):
+            if sublists and sublists[-1] % 2 == num % 2:
+                continue
+            if not visited[num]:
+                visited[num] = True
+                sublists.append(num)
+                dfs()
+                
+                sublists.pop()
+                visited[num] = False            
+    dfs()
+    return ans
+    
+permute(2)

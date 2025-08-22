@@ -484,4 +484,7 @@ def permute(n: int) -> List[List[int]]:
     dfs()
     return ans
     
-permute(2)
+
+
+
+#mergeSortedArray(nums1 = [0], m = 0, nums2 = [1], n = 1)

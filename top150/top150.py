@@ -79,8 +79,30 @@ class Solution:
             prev, prev_hold = curr, curr_hold
             curr = max(prev, prev_hold - p)
             curr_hold = max(prev_hold, prev + p)
-        print(curr, curr_hold)
+        
+    # Day 2
+    def canJump(self, nums: List[int]) -> bool:
+        if len(nums) == 1:
+            return True
+        if nums[0] == 0:
+            return False
+        l = 0 
+        r1, r2 = len(nums) - 2, len(nums) - 1
+        while r1 >= l:
+            if nums[r1] >= r2 - r1:  
+                r1 -= 1
+                r2 = r1 + 1
+            else:
+                r1 -= 1
+        if r2 - r1 == 1:
+            return True
+        return False
+          
+        
+        
+        
+        
 
 result = Solution()
-result.maxProfitMed(prices = [7,1,5,3,6,4])
+
 
